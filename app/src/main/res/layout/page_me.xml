@@ -1,0 +1,275 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:fitsSystemWindows="true"
+    xmlns:imagecontrol="http://schemas.android.com/apk/res-auto"
+    android:background="#ebebeb"
+    android:orientation="vertical">
+
+<RelativeLayout
+android:id="@+id/re_avatar"
+android:layout_width="match_parent"
+android:layout_height="65dp"
+android:layout_marginTop="20dp"
+android:background="@drawable/btn_list_item_bg"
+android:clickable="true" >
+
+<com.tsunami.run.happyrun.views.RoundImageView
+    android:id="@+id/iv_avatar"
+    android:layout_width="50dp"
+    android:layout_height="50dp"
+    android:layout_alignParentRight="true"
+    android:layout_centerVertical="true"
+    android:layout_marginRight="12dp"
+    imagecontrol:border_inside_color="#1296db"
+    imagecontrol:border_outside_color="#1296db"
+    imagecontrol:border_thickness="1dp"
+    android:src="@drawable/default_useravatar" />
+
+
+<TextView
+    android:layout_width="wrap_content"
+    android:layout_height="wrap_content"
+    android:layout_centerVertical="true"
+    android:layout_marginLeft="20dp"
+    android:text="头像"
+    android:textColor="#353535"
+    android:textSize="16sp" />
+
+<View
+    android:layout_width="match_parent"
+    android:layout_height="0.1dp"
+    android:layout_alignParentBottom="true"
+    android:layout_marginLeft="12dp"
+    android:layout_marginRight="12dp"
+    android:background="#dadada" />
+</RelativeLayout>
+
+<RelativeLayout
+android:id="@+id/re_name"
+android:layout_width="match_parent"
+android:layout_height="48dp"
+android:background="@drawable/btn_list_item_bg"
+android:clickable="true" >
+
+<TextView
+    android:id="@+id/tv_temp_name"
+    android:layout_width="wrap_content"
+    android:layout_height="wrap_content"
+    android:layout_alignParentLeft="true"
+    android:layout_centerVertical="true"
+    android:layout_marginLeft="20dp"
+    android:text="昵称"
+    android:textColor="#353535"
+    android:textSize="16sp" />
+
+<TextView
+    android:id="@+id/tv_name"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:layout_alignParentRight="true"
+    android:layout_centerVertical="true"
+    android:layout_marginRight="20dp"
+    android:layout_toRightOf="@id/tv_temp_name"
+    android:ellipsize="end"
+    android:gravity="right"
+    android:singleLine="true"
+    android:text="kk"
+    android:textColor="#AAAAAA"
+    android:textSize="14sp" />
+
+<View
+    android:layout_width="match_parent"
+    android:layout_height="0.1dp"
+    android:layout_alignParentBottom="true"
+    android:layout_marginLeft="12dp"
+    android:layout_marginRight="12dp"
+    android:background="#dadada" />
+</RelativeLayout>
+
+<RelativeLayout
+android:id="@+id/re_sex"
+android:layout_width="match_parent"
+android:layout_height="48dp"
+android:background="@drawable/btn_list_item_bg"
+android:clickable="true" >
+
+<TextView
+    android:id="@+id/tv_temp_sex"
+    android:layout_width="wrap_content"
+    android:layout_height="wrap_content"
+    android:layout_alignParentLeft="true"
+    android:layout_centerVertical="true"
+    android:layout_marginLeft="20dp"
+    android:text="性别"
+    android:textColor="#353535"
+    android:textSize="16sp" />
+
+<TextView
+    android:id="@+id/tv_sex"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:layout_alignParentRight="true"
+    android:layout_centerVertical="true"
+    android:layout_marginRight="20dp"
+    android:layout_toRightOf="@id/tv_temp_sex"
+    android:ellipsize="end"
+    android:gravity="right"
+    android:singleLine="true"
+    android:text="男"
+    android:textColor="#AAAAAA"
+    android:textSize="14sp" />
+
+<View
+    android:layout_width="match_parent"
+    android:layout_height="0.1dp"
+    android:layout_alignParentBottom="true"
+    android:layout_marginLeft="12dp"
+    android:layout_marginRight="12dp"
+    android:background="#dadada" />
+</RelativeLayout>
+
+
+
+<RelativeLayout
+android:id="@+id/re_age"
+android:layout_width="match_parent"
+android:layout_height="48dp"
+android:background="@drawable/btn_list_item_bg"
+android:clickable="true" >
+
+<TextView
+    android:id="@+id/tv_temp_age"
+    android:layout_width="wrap_content"
+    android:layout_height="wrap_content"
+    android:layout_alignParentLeft="true"
+    android:layout_centerVertical="true"
+    android:layout_marginLeft="20dp"
+    android:text="出生年份"
+    android:textColor="#353535"
+    android:textSize="16sp" />
+
+<TextView
+    android:id="@+id/tv_age"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:layout_alignParentRight="true"
+    android:layout_centerVertical="true"
+    android:layout_marginRight="20dp"
+    android:layout_toRightOf="@id/tv_temp_age"
+    android:ellipsize="end"
+    android:gravity="right"
+    android:singleLine="true"
+    android:text="1994"
+    android:textColor="#AAAAAA"
+    android:textSize="14sp" />
+
+<View
+    android:layout_width="match_parent"
+    android:layout_height="0.1dp"
+    android:layout_alignParentBottom="true"
+    android:layout_marginLeft="12dp"
+    android:layout_marginRight="12dp"
+    android:background="#dadada" />
+</RelativeLayout>
+
+
+
+
+
+
+<RelativeLayout
+android:id="@+id/re_sign"
+android:layout_width="match_parent"
+android:layout_height="48dp"
+android:layout_marginTop="20dp"
+android:background="@drawable/btn_list_item_bg"
+android:clickable="true" >
+
+<TextView
+    android:id="@+id/tv_temp_sign"
+    android:layout_width="wrap_content"
+    android:layout_height="wrap_content"
+    android:layout_alignParentLeft="true"
+    android:layout_centerVertical="true"
+    android:layout_marginLeft="20dp"
+    android:text="个性签名"
+    android:textColor="#353535"
+    android:textSize="16sp" />
+
+<TextView
+    android:id="@+id/tv_sign"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:layout_alignParentRight="true"
+    android:layout_centerVertical="true"
+    android:layout_marginRight="20dp"
+    android:layout_toRightOf="@id/tv_temp_sign"
+    android:ellipsize="end"
+    android:gravity="right"
+    android:singleLine="true"
+    android:text="志存高远"
+    android:textColor="#AAAAAA"
+    android:textSize="14sp" />
+
+<View
+    android:layout_width="match_parent"
+    android:layout_height="0.1dp"
+    android:layout_alignParentBottom="true"
+    android:layout_marginLeft="12dp"
+    android:layout_marginRight="12dp"
+    android:background="#dadada" />
+</RelativeLayout>
+
+
+<RelativeLayout
+android:id="@+id/re_settings"
+android:layout_width="match_parent"
+android:layout_height="48dp"
+android:background="@drawable/btn_list_item_bg"
+android:clickable="true" >
+
+<TextView
+    android:id="@+id/tv_temp_settings"
+    android:layout_width="wrap_content"
+    android:layout_height="wrap_content"
+    android:layout_alignParentLeft="true"
+    android:layout_centerVertical="true"
+    android:layout_marginLeft="20dp"
+    android:text="跑步记录"
+    android:textColor="#353535"
+    android:textSize="16sp"
+    android:onClick="runHistoryClick"/>
+
+    <View
+        android:layout_width="match_parent"
+        android:layout_height="0.1dp"
+        android:layout_alignParentBottom="true"
+        android:layout_marginLeft="12dp"
+        android:layout_marginRight="12dp"
+        android:background="#dadada" />
+</RelativeLayout>
+
+    <RelativeLayout
+        android:id="@+id/run_knowledge"
+        android:layout_width="match_parent"
+        android:layout_height="48dp"
+        android:background="@drawable/btn_list_item_bg"
+        android:clickable="true" >
+
+        <TextView
+            android:id="@+id/tv_temp_knowledge"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentLeft="true"
+            android:layout_centerVertical="true"
+            android:layout_marginLeft="20dp"
+            android:text="跑步知识"
+            android:textColor="#353535"
+            android:textSize="16sp"
+            />
+    </RelativeLayout>
+
+
+</LinearLayout>
