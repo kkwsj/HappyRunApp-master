@@ -266,29 +266,29 @@ public class weather_fragment extends Fragment {
      * 获取城市天气
      */
     private void connectWeather() {
-        final ProgressDialog dialog = new ProgressDialog(getActivity());
-        dialog.setMessage("加载中...");
-        dialog.show();
-        new AsyncTask<Void, Void, Void>() {
-            @Override
-            protected Void doInBackground(Void... params) {
-                try {
-              //      Thread.sleep(1000);
-                    // 获取天气
-                    WeatherDataUtil.requestWeather();
-                } catch (Exception e) {
-                    e.printStackTrace();
-                }
-                return null;
-            }
-
-            @Override
-            protected void onPostExecute(Void result) {
-                // 更新UI界面
-                updateWeatherUI();
-                dialog.dismiss();
-            }
-        }.execute();
+//        final ProgressDialog dialog = new ProgressDialog(getActivity());
+//        dialog.setMessage("加载中...");
+//        dialog.show();
+//        new AsyncTask<Void, Void, Void>() {
+//            @Override
+//            protected Void doInBackground(Void... params) {
+//                try {
+//              //      Thread.sleep(1000);
+//                    // 获取天气
+//                    WeatherDataUtil.requestWeather();
+//                } catch (Exception e) {
+//                    e.printStackTrace();
+//                }
+//                return null;
+//            }
+//
+//            @Override
+//            protected void onPostExecute(Void result) {
+//                // 更新UI界面
+//                updateWeatherUI();
+//                dialog.dismiss();
+//            }
+//        }.execute();
     }
 
     // 监听网络变化广播

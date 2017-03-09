@@ -23,7 +23,7 @@ import java.util.List;
 
 
 /**
- * Created by bee on 2016/9/17.
+ * Created by 2010330579 on 2016/3/27.
  */
 public class RecordShowActivity extends AppCompatActivity implements AMap.OnMapLoadedListener{
     //地图

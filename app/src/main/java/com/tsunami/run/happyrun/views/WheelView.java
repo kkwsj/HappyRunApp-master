@@ -22,9 +22,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 /**
- * Author: wangjie
- * Email: tiantian.china.2@gmail.com
- * Date: 7/1/14.
+ * Created by 2010330579 on 2016/3/27.
  */
 public class WheelView extends ScrollView {
     public static final String TAG = WheelView.class.getSimpleName();

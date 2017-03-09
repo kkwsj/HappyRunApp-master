@@ -22,7 +22,7 @@ import java.sql.Date;
 import java.text.SimpleDateFormat;
 
 /**
- * Created by SHEN XIAOMING on 2016/7/24.
+ * Created by 2010330579 on 2016/3/27.
  */
 public class SunriseView extends View {
 

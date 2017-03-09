@@ -13,7 +13,7 @@ import com.tsunami.run.happyrun.R;
 import java.util.List;
 
 /**
- * Created by bee on 2016/9/20.
+ * Created by 2010330579 on 2016/3/27.
  */
 public class RunRecordItemAdapter extends ArrayAdapter<RunRecordItem> {
     private int resourceId;

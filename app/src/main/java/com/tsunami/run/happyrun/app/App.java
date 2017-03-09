@@ -6,7 +6,7 @@ import android.content.Context;
 import com.baidu.apistore.sdk.ApiStoreSDK;
 
 /**
- * Created by SHEN XIAOMING on 2016/9/25.
+ * Created by 2010330579 on 2016/3/27.
  */
 public class App extends Application {
 

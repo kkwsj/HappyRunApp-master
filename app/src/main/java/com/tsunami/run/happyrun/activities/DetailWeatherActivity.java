@@ -19,7 +19,7 @@ import com.tsunami.run.happyrun.utils.weather.WeatherDataUtil;
 
 
 /**
- * Created by SHEN XIAOMING on 2016/9/26.
+ * Created by 2010330579 on 2016/3/27.
  */
 public class DetailWeatherActivity extends AppCompatActivity{
 

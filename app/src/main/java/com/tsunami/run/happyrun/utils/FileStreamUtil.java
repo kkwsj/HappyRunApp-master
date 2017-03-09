@@ -10,9 +10,7 @@ import java.io.IOException;
 import java.io.InputStreamReader;
 import java.io.OutputStreamWriter;
 
-/**
- * Created by SHEN XIAOMING on 2016/8/13.
- */
+
 public class FileStreamUtil {
 
     /**

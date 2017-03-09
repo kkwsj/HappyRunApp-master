@@ -24,7 +24,7 @@ import java.util.TimerTask;
 
 
 /**
- * Created by MacheNike on 2016/12/6.
+ * Created by 2010330579 on 2016/3/27.
  */
 public class FullSreenMusicPlayerActivity extends AppCompatActivity implements View.OnClickListener{
 

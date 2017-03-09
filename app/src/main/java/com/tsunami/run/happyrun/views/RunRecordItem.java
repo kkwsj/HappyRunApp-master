@@ -1,7 +1,7 @@
 package com.tsunami.run.happyrun.views;
 
 /**
- * Created by bee on 2016/9/20.
+ * Created by 2010330579 on 2016/3/27.
  */
 public class RunRecordItem {
     private String date;

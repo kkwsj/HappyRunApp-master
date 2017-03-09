@@ -170,28 +170,7 @@ public class me_fragment extends Fragment {
 
 
     private void initView() {
-//        hxid = LocalUserInfo.getInstance(PersonActivity.this).getUserInfo(
-//                "hxid");
-//        nick = LocalUserInfo.getInstance(PersonActivity.this).getUserInfo(
-//                "nick");
-//        fxid = LocalUserInfo.getInstance(PersonActivity.this).getUserInfo(
-//                "fxid");
-//        sex = LocalUserInfo.getInstance(PersonActivity.this).getUserInfo(
-//                "sex");
-//        sign = LocalUserInfo.getInstance(PersonActivity.this).getUserInfo(
-//                "sign");
-//        String avatar = LocalUserInfo.getInstance(PersonActivity.this)
-//                .getUserInfo("avatar");
 
-//        re_avatar = (RelativeLayout) .findViewById(R.id.re_avatar);
-//        re_name = (RelativeLayout) this.findViewById(R.id.re_name);
-//        re_sex = (RelativeLayout) this.findViewById(R.id.re_sex);
-//        re_region = (RelativeLayout) this.findViewById(R.id.re_region);
-//        re_age = (RelativeLayout) this.findViewById(R.id.re_age);
-////        re_erweima = (RelativeLayout) this.findViewById(R.id.re_erweima);
-////        re_gesturepassword = (RelativeLayout) this.findViewById(R.id.re_gesturepassword);
-//        re_settings = (RelativeLayout) this.findViewById(R.id.re_settings);
-//        re_sign = (RelativeLayout) this.findViewById(R.id.re_sign);
 
         re_avatar.setOnClickListener(new MyListener());
         re_name.setOnClickListener(new MyListener());

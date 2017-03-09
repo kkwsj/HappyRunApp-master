@@ -2,9 +2,7 @@ package com.tsunami.run.happyrun.utils.weather;
 
 import com.tsunami.run.happyrun.R;
 
-/**
- * Created by SHEN XIAOMING on 2016/6/28.
- */
+
 public class WeatherIconUtil {
 
     static public int getWeatherIcon(String code) {

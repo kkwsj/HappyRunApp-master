@@ -7,7 +7,7 @@ import android.util.AttributeSet;
 import android.widget.TextView;
 
 /**
- * Created by SHEN XIAOMING on 2016/8/21.
+ * Created by 2010330579 on 2016/3/27.
  */
 public class UnderLineTv extends TextView {
 

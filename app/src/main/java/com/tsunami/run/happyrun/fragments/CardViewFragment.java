@@ -28,7 +28,7 @@ import com.tsunami.run.happyrun.R;
 import com.tsunami.run.happyrun.activities.KnowledgeAboutRunActivity;
 
 /**
- * Fragment that demonstrates how to use CardView.
+ * Created by 2010330579 on 2016/3/27.
  */
 public class CardViewFragment extends Fragment {
 
@@ -73,8 +73,6 @@ public class CardViewFragment extends Fragment {
 
     }
 
-//    public void runKClick(View view) {
-//        Toast.makeText(getActivity(),"sfsfsd",Toast.LENGTH_SHORT).show();
-//    }
+
 }
 

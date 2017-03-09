@@ -17,7 +17,7 @@ import com.tsunami.run.happyrun.R;
 import com.tsunami.run.happyrun.fragments.CardViewFragment;
 
 /**
- * Created by MacheNike on 2016/12/8.
+ * Created by 2010330579 on 2016/3/27.
  */
 public class KnowledgeAboutRunActivity extends AppCompatActivity{
 
