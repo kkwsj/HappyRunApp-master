@@ -42,7 +42,7 @@ public class WhewView extends View {
 
     private void init() {
         paint = new Paint();
-        // 设置博文的颜色
+        // 设置波纹的颜色
         paint.setColor(0x0059ccf5);
         alphaList.add("255");// 圆心的不透明度
         startWidthList.add("0");

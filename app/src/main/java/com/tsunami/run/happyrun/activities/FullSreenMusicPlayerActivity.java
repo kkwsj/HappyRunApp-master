@@ -31,9 +31,7 @@ public class FullSreenMusicPlayerActivity extends AppCompatActivity implements V
     private TextView mEnd;
     private TextView mStart;
     private SeekBar mseekBar1;
-    private ImageView mPrev;
     private ImageView mPlay_pause;
-    private ImageView mNext;
 
     private FindSongs finder;
     private List<Mp3Info> mp3Infos;
@@ -103,9 +101,7 @@ public class FullSreenMusicPlayerActivity extends AppCompatActivity implements V
         mEnd = (TextView) findViewById(R.id.endText);
         mStart = (TextView) findViewById(R.id.startText);
         mseekBar1 = (SeekBar) findViewById(R.id.seekBar1);
-        mPrev = (ImageView) findViewById(R.id.prev);
         mPlay_pause = (ImageView) findViewById(R.id.play_pause);
-        mNext = (ImageView) findViewById(R.id.next);
 
         mEnd.setText(formatTime(mp3Infos.get(musicPosition).getDuration()));
 

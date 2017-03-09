@@ -11,6 +11,7 @@ import android.view.Menu;
 import android.view.View;
 import android.view.ViewConfiguration;
 import android.view.Window;
+import android.widget.Toast;
 
 import com.tsunami.run.happyrun.R;
 import com.tsunami.run.happyrun.fragments.weather_fragment;
@@ -169,6 +170,7 @@ public class MainActivity extends FragmentActivity implements View.OnClickListen
             case R.id.id_indicator_three:
                 mTabIndicators.get(2).setIconAlpha(1.0f);
                 mViewPager.setCurrentItem(2, false);
+                Toast.makeText(this, "目前天气免费接口不能用！", Toast.LENGTH_SHORT).show();
                 break;
             case R.id.id_indicator_four:
                 mTabIndicators.get(3).setIconAlpha(1.0f);

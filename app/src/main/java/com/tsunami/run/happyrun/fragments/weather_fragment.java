@@ -88,7 +88,7 @@ public class weather_fragment extends Fragment {
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         ViewGroup rootView = (ViewGroup) inflater.inflate(
-                R.layout.page_find, container, false);
+                R.layout.page_weather, container, false);
 
         locationManager = (LocationManager) getActivity().getSystemService(Context.LOCATION_SERVICE);
 
@@ -157,7 +157,7 @@ public class weather_fragment extends Fragment {
             } else if (!currentLocation) {
                 Toast.makeText(getActivity(), "请打开位置服务", Toast.LENGTH_SHORT).show();
             } else {
-                Toast.makeText(getActivity(), "请下拉刷新", Toast.LENGTH_SHORT).show();
+                Toast.makeText(getActivity(), "目前天气免费接口不能用！", Toast.LENGTH_SHORT).show();
             }
         }
     }
@@ -202,8 +202,10 @@ public class weather_fragment extends Fragment {
                 break;
         }
         // 当前天气情况
+//        weatherIcon.setImageResource(WeatherIconUtil.getWeatherIcon(
+//                WeatherDataUtil.getCondCode()));
         weatherIcon.setImageResource(WeatherIconUtil.getWeatherIcon(
-                WeatherDataUtil.getCondCode()));
+                "100"));
         weatherCond.setText(WeatherDataUtil.getCond());
         weatherTmpNow.setText(WeatherDataUtil.getTmp());
         weatherUpdate.setText(WeatherDataUtil.getUpdateTime());
@@ -271,28 +273,29 @@ public class weather_fragment extends Fragment {
      */
     private void connectWeather() {
 //        final ProgressDialog dialog = new ProgressDialog(getActivity());
-//        dialog.setMessage("加载中...");
+//        dialog.setMessage("加...");
 //        dialog.show();
-//        new AsyncTask<Void, Void, Void>() {
-//            @Override
-//            protected Void doInBackground(Void... params) {
-//                try {
-//              //      Thread.sleep(1000);
-//                    // 获取天气
-//                    WeatherDataUtil.requestWeather();
-//                } catch (Exception e) {
-//                    e.printStackTrace();
-//                }
-//                return null;
-//            }
-//
-//            @Override
-//            protected void onPostExecute(Void result) {
-//                // 更新UI界面
-//                updateWeatherUI();
-//                dialog.dismiss();
-//            }
-//        }.execute();
+
+        new AsyncTask<Void, Void, Void>() {
+            @Override
+            protected Void doInBackground(Void... params) {
+                try {
+              //      Thread.sleep(1000);
+                    // 获取天气
+                    WeatherDataUtil.requestWeather();
+                } catch (Exception e) {
+                    e.printStackTrace();
+                }
+                return null;
+            }
+
+            @Override
+            protected void onPostExecute(Void result) {
+                // 更新UI界面
+                updateWeatherUI();
+                //dialog.dismiss();
+            }
+        }.execute();
     }
 
     // 监听网络变化广播
@@ -301,6 +304,7 @@ public class weather_fragment extends Fragment {
         @Override
         public void onReceive(Context context, Intent intent) {
             // 获取当前网络状态
+
             ConnectivityManager connectivityManager = (ConnectivityManager)
                     getActivity().getSystemService(Context.CONNECTIVITY_SERVICE);
             NetworkInfo networkInfo = connectivityManager.getActiveNetworkInfo();
