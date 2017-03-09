@@ -51,7 +51,6 @@ public class WhewView extends View {
     @Override
     public void onDraw(Canvas canvas) {
         super.onDraw(canvas);
-//        setBackgroundColor(Color.TRANSPARENT);// 颜色：完全透明
         // 依次绘制 同心圆
         for (int i = 0; i < alphaList.size(); i++) {
             int alpha = Integer.parseInt(alphaList.get(i));
