@@ -1,6 +1,5 @@
 package com.tsunami.run.happyrun.activities;
 
-import android.app.Activity;
 import android.content.Intent;
 import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
@@ -25,6 +24,7 @@ public class RunHistoryActivity extends AppCompatActivity {
     //数据库
     private MyRunDatabaseHelper dbHelper;
     private List<RunRecordItem> recordItemList = new ArrayList<RunRecordItem>();
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -39,12 +39,11 @@ public class RunHistoryActivity extends AppCompatActivity {
             getSupportActionBar().setDisplayShowHomeEnabled(true);
             // 2 添加的代码
             getSupportActionBar().setTitle("跑步记录");
-            /////////////////////////////////
         }
 
         //初始化record资源
         init();
-        RunRecordItemAdapter adapter = new RunRecordItemAdapter(RunHistoryActivity.this.getApplicationContext(),R.layout.map_list_item,recordItemList);
+        RunRecordItemAdapter adapter = new RunRecordItemAdapter(RunHistoryActivity.this.getApplicationContext(), R.layout.map_list_item, recordItemList);
         ListView listView = (ListView) findViewById(R.id.record_list);
         listView.setAdapter(adapter);
         listView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
@@ -52,20 +51,21 @@ public class RunHistoryActivity extends AppCompatActivity {
             public void onItemClick(AdapterView<?> adapterView, View view, int i, long l) {
                 RunRecordItem recordItem = recordItemList.get(i);
                 Intent intent = new Intent(RunHistoryActivity.this, RecordShowActivity.class);
-                intent.putExtra("date",recordItem.getDate());
-                intent.putExtra("duration",recordItem.getDuration());
-                intent.putExtra("distance",recordItem.getDistance());
-                intent.putExtra("averagespeed",recordItem.getAveragespeed());
-                intent.putExtra("points",recordItem.getPoints());
+                intent.putExtra("date", recordItem.getDate());
+                intent.putExtra("duration", recordItem.getDuration());
+                intent.putExtra("distance", recordItem.getDistance());
+                intent.putExtra("averagespeed", recordItem.getAveragespeed());
+                intent.putExtra("points", recordItem.getPoints());
                 startActivity(intent);
             }
         });
     }
+
     private void init() {
-        dbHelper = new MyRunDatabaseHelper(this,"record.db",null,1);//创建数据库
+        dbHelper = new MyRunDatabaseHelper(this, "record.db", null, 1);//创建数据库
         SQLiteDatabase db = dbHelper.getWritableDatabase();
-        Cursor cursor  = db.query("record",null,null,null,null,null,null);
-        if(cursor.moveToFirst()){
+        Cursor cursor = db.query("record", null, null, null, null, null, null);
+        if (cursor.moveToFirst()) {
             do {
                 //遍历cursor对象
                 String date = cursor.getString(cursor.getColumnIndex("date"));
@@ -77,15 +77,15 @@ public class RunHistoryActivity extends AppCompatActivity {
                         distance,
                         cursor.getString(cursor.getColumnIndex("averagespeed")),
                         cursor.getString(cursor.getColumnIndex("points"))));
-                Log.d("Map",date);
-            }while(cursor.moveToNext());
+                Log.d("Map", date);
+            } while (cursor.moveToNext());
         }
     }
 
     @Override
     public boolean onOptionsItemSelected(MenuItem item) {
         int id = item.getItemId();
-        switch (id){
+        switch (id) {
             case android.R.id.home:
                 finish();
                 return true;

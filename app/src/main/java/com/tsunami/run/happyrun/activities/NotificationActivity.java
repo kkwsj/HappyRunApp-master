@@ -2,6 +2,7 @@ package com.tsunami.run.happyrun.activities;
 /**
  * Created by 2010330579 on 2016/6/29.
  */
+
 import android.app.Activity;
 import android.app.Notification;
 import android.app.NotificationManager;
@@ -21,9 +22,8 @@ public class NotificationActivity extends Activity implements View.OnClickListen
 
     private Button sendNotice;
 
-    long[] vibrates = {0,1000,1000,1000};
+    long[] vibrates = {0, 1000, 1000, 1000};
 
-    Uri soundUri = Uri.fromFile(new File("/system/360/Rihanna-Diamonds.mp3"));
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -37,8 +37,8 @@ public class NotificationActivity extends Activity implements View.OnClickListen
         switch (view.getId()) {
             case R.id.send_notice:
                 NotificationManager manager = (NotificationManager) getSystemService(NOTIFICATION_SERVICE);
-                Intent intent = new Intent(this,NotificationActivity.class);
-                PendingIntent pi = PendingIntent.getActivity(this,0,intent,PendingIntent.FLAG_CANCEL_CURRENT);
+                Intent intent = new Intent(this, NotificationActivity.class);
+                PendingIntent pi = PendingIntent.getActivity(this, 0, intent, PendingIntent.FLAG_CANCEL_CURRENT);
                 NotificationCompat.Builder mBuilder = (NotificationCompat.Builder) new NotificationCompat.Builder(this)
                         .setSmallIcon(R.mipmap.ic_launcher)
                         .setVibrate(vibrates)
@@ -46,8 +46,6 @@ public class NotificationActivity extends Activity implements View.OnClickListen
                         .setDefaults(Notification.DEFAULT_ALL)
                         .setContentText("Hello World!");
 
-//                Intent intent = new Intent(this,NotificationActivity.class);
-//                PendingIntent pi = PendingIntent.getActivity(this,0,intent,PendingIntent.FLAG_CANCEL_CURRENT);
                 mBuilder.setContentIntent(pi);
                 manager.notify(1, mBuilder.build());
                 break;

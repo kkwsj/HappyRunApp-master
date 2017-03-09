@@ -74,8 +74,7 @@ public class SunriseView extends View {
     }
 
     private void initView() {
-//        mDrawable = ContextCompat.getDrawable(getContext(), R.drawable.sun);
-//        mDrawable = getResources().getDrawable(R.drawable.sun, null);
+
         // 加载图片
         bitmap = BitmapFactory.decodeResource(getResources(), R.drawable.sun);
         // bitmap缩放
@@ -123,7 +122,7 @@ public class SunriseView extends View {
 
         center = new Point();
 
-        animator = ValueAnimator.ofInt(0, (int)(100 * dayRate));
+        animator = ValueAnimator.ofInt(0, (int) (100 * dayRate));
         if (dayRate < 0.5f) {
             if (dayRate < 0.25f) {
                 animator.setDuration(500);
@@ -159,7 +158,7 @@ public class SunriseView extends View {
                 break;
             case 1: // 当前时间日出日落之间
                 if (ratio < 100 * dayRate) {
-                    center.x = circlePoint.x - (int)(radius * Math.cos(Math.PI * ratio / 100));
+                    center.x = circlePoint.x - (int) (radius * Math.cos(Math.PI * ratio / 100));
                     center.y = circlePoint.y - (int) (radius * Math.sin(Math.PI * ratio / 100));
                     canvas.drawBitmap(bitmap, center.x - bitmap.getWidth() / 2, center.y - bitmap.getHeight() / 2, mPaint1);
                     ratio++;
@@ -168,7 +167,7 @@ public class SunriseView extends View {
                 break;
             case 2: // 当前时间晚于日落
                 if (ratio <= 100) {
-                    center.x = circlePoint.x - (int)(radius * Math.cos(Math.PI * ratio / 100));
+                    center.x = circlePoint.x - (int) (radius * Math.cos(Math.PI * ratio / 100));
                     center.y = circlePoint.y - (int) (radius * Math.sin(Math.PI * ratio / 100));
                     canvas.drawBitmap(bitmap, center.x - bitmap.getWidth() / 2, center.y - bitmap.getHeight() / 2, mPaint1);
                     ratio++;
@@ -188,6 +187,6 @@ public class SunriseView extends View {
         mHeight = super.getMeasuredHeight();
 
         radius = (int) (mWidth / 2 * 0.7f);
-        circlePoint = new Point(mWidth / 2, mHeight - (int)(radius * 0.1f));
+        circlePoint = new Point(mWidth / 2, mHeight - (int) (radius * 0.1f));
     }
 }

@@ -18,7 +18,7 @@ import java.net.HttpURLConnection;
 import java.net.URL;
 
 /**
- * Created by SHEN XIAOMING on 2016/7/24.
+ * Created by 2010330579 on 2016/1/7.
  */
 public class WeatherDataUtil {
 
@@ -34,6 +34,7 @@ public class WeatherDataUtil {
 
     /**
      * 保存城市名
+     *
      * @param c
      */
     public static void setCity(String c) {
@@ -56,7 +57,7 @@ public class WeatherDataUtil {
             HttpURLConnection connection = (HttpURLConnection) url
                     .openConnection();
             connection.setRequestMethod("GET");
-            connection.setRequestProperty("apikey",  "c9fede3ca8b6f60bf44c5d0c4f24ec2c");
+            connection.setRequestProperty("apikey", "c9fede3ca8b6f60bf44c5d0c4f24ec2c");
             connection.connect();
             InputStream is = connection.getInputStream();
             reader = new BufferedReader(new InputStreamReader(is, "UTF-8"));
@@ -82,7 +83,7 @@ public class WeatherDataUtil {
 
     /**
      * 获取天气情况
-     *     异步方式，CallBack已封装好
+     * 异步方式，CallBack已封装好
      */
     public static void connectWeather() {
         Parameters para = new Parameters();
@@ -118,6 +119,7 @@ public class WeatherDataUtil {
 
     /**
      * ApiStoreSDK抛出异常获取路径
+     *
      * @param e
      * @return
      */
@@ -135,7 +137,8 @@ public class WeatherDataUtil {
 
     /**
      * 获取所有天气数据
-     * @return  JSONObject值
+     *
+     * @return JSONObject值
      */
     public static JSONObject getDataAll() {
         return dataAll;
@@ -143,7 +146,8 @@ public class WeatherDataUtil {
 
     /**
      * 保存所有的天气数据
-     * @param responseString    api返回值
+     *
+     * @param responseString api返回值
      */
     public static void setDataAll(String responseString) {
         try {
@@ -158,7 +162,8 @@ public class WeatherDataUtil {
 
     /**
      * 获取城市aqi
-     * @return  空气质量指数
+     *
+     * @return 空气质量指数
      */
     public static String getAqi() {
         try {
@@ -175,7 +180,7 @@ public class WeatherDataUtil {
                     aqiRank = 1;
                 } else if (aqiNum < 150) {
                     aqiRank = 2;
-                }else if (aqiNum < 200) {
+                } else if (aqiNum < 200) {
                     aqiRank = 3;
                 } else if (aqiNum < 300) {
                     aqiRank = 4;
@@ -192,7 +197,8 @@ public class WeatherDataUtil {
 
     /**
      * 获取当前城市
-     * @return  当前城市
+     *
+     * @return 当前城市
      */
     public static String getCity() {
         try {
@@ -208,7 +214,8 @@ public class WeatherDataUtil {
 
     /**
      * 获取城市aqi
-     * @return  空气质量等级
+     *
+     * @return 空气质量等级
      */
     public static String getAqiText() {
         try {
@@ -228,7 +235,8 @@ public class WeatherDataUtil {
 
     /**
      * 获取当前温度范围
-     * @return  温度范围
+     *
+     * @return 温度范围
      */
     public static String getTemp() {
         try {
@@ -248,7 +256,8 @@ public class WeatherDataUtil {
 
     /**
      * 获取当天天气情况代码
-     * @return  天气情况代码
+     *
+     * @return 天气情况代码
      */
     public static String getCondCode() {
         try {
@@ -265,7 +274,8 @@ public class WeatherDataUtil {
 
     /**
      * 获取当天天气情况
-     * @return  天气情况
+     *
+     * @return 天气情况
      */
     public static String getCond() {
         try {
@@ -283,7 +293,8 @@ public class WeatherDataUtil {
 
     /**
      * 获取当前温度
-     * @return  当前温度
+     *
+     * @return 当前温度
      */
     public static String getTmp() {
         try {
@@ -299,6 +310,7 @@ public class WeatherDataUtil {
 
     /**
      * 获取返回数据now字段
+     *
      * @return
      */
     public static String getNow() {
@@ -313,6 +325,7 @@ public class WeatherDataUtil {
 
     /**
      * 获取返回数据daily_forecast字段
+     *
      * @return
      */
     public static String getDailyForecast() {
@@ -326,6 +339,7 @@ public class WeatherDataUtil {
 
     /**
      * 获取返回数据hourly_forecast字段
+     *
      * @return
      */
     public static String getHourlyForecast() {
@@ -339,6 +353,7 @@ public class WeatherDataUtil {
 
     /**
      * 获取返回数据suggestion字段
+     *
      * @return
      */
     public static String getSuggestion() {
@@ -352,13 +367,14 @@ public class WeatherDataUtil {
 
     /**
      * 获取日出时间
+     *
      * @return
      */
     public static String getSunrise() {
         try {
             String daily_forecast_str = dataAll.getString("daily_forecast");
             JSONArray daily_forecast = new JSONArray(daily_forecast_str);
-            JSONObject today= daily_forecast.getJSONObject(0);
+            JSONObject today = daily_forecast.getJSONObject(0);
             String sun_str = today.getString("astro");
             JSONObject sun = new JSONObject(sun_str);
             return sun.getString("sr");
@@ -370,13 +386,14 @@ public class WeatherDataUtil {
 
     /**
      * 获取日落时间
+     *
      * @return
      */
     public static String getSunset() {
         try {
             String daily_forecast_str = dataAll.getString("daily_forecast");
             JSONArray daily_forecast = new JSONArray(daily_forecast_str);
-            JSONObject today= daily_forecast.getJSONObject(0);
+            JSONObject today = daily_forecast.getJSONObject(0);
             String sun_str = today.getString("astro");
             JSONObject sun = new JSONObject(sun_str);
             return sun.getString("ss");
@@ -388,6 +405,7 @@ public class WeatherDataUtil {
 
     /**
      * 获取api数据发布时间
+     *
      * @return
      */
     public static String getUpdateTime() {

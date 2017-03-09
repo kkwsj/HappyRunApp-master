@@ -12,31 +12,29 @@ import java.util.Map;
 
 
 public abstract class PinyinKeyMapList<T> {
-    private HashMap<String,List<T>> map=new HashMap<>();
-    private List<String> types=new ArrayList<>();
-    private List<T> list=new ArrayList<>();
+    private HashMap<String, List<T>> map = new HashMap<>();
+    private List<String> types = new ArrayList<>();
+    private List<T> list = new ArrayList<>();
 
     public PinyinKeyMapList(List<T> list) {
         this.list = list;
-        for(T t:list)
-        {
-            String str=getField(t);
-            String frist=getFirstChar(str);
+        for (T t : list) {
+            String str = getField(t);
+            String frist = getFirstChar(str);
 
-            if(!types.contains(frist)){
+            if (!types.contains(frist)) {
                 types.add(frist);
             }
 
-            List<T> keyList=map.get(frist);
-            if(keyList==null)
-            {
-                keyList=new ArrayList<T>();
-                map.put(frist,keyList);
+            List<T> keyList = map.get(frist);
+            if (keyList == null) {
+                keyList = new ArrayList<T>();
+                map.put(frist, keyList);
             }
             keyList.add(t);
         }
         Collections.sort(types);
-        for(Iterator<Map.Entry<String, List<T>>> it=map.entrySet().iterator();it.hasNext();){
+        for (Iterator<Map.Entry<String, List<T>>> it = map.entrySet().iterator(); it.hasNext(); ) {
             Map.Entry<String, List<T>> item = it.next();
             List<T> itList = item.getValue();
             Collections.sort(itList, new Comparator<T>() {
@@ -48,6 +46,7 @@ public abstract class PinyinKeyMapList<T> {
 
         }
     }
+
     public abstract String getField(T t);
 
     public HashMap<String, List<T>> getMap() {
@@ -77,12 +76,12 @@ public abstract class PinyinKeyMapList<T> {
         return this;
     }
 
-    public List<T> getIndexList(int index){
+    public List<T> getIndexList(int index) {
         return map.get(types.get(index));
     }
 
     public static String getFirstChar(String value) {
-        value=value.trim();
+        value = value.trim();
         char firstChar = value.charAt(0);
         String first = null;
         String[] print = PinyinHelper.toHanyuPinyinStringArray(firstChar);

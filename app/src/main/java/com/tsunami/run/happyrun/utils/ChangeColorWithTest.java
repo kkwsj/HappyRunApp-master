@@ -28,7 +28,7 @@ public class ChangeColorWithTest extends View {
     private Bitmap mIconBitmap;
     private String mText = "微信";
     private int mTextSize = (int) TypedValue.
-            applyDimension(TypedValue.COMPLEX_UNIT_SP,12,getResources().getDisplayMetrics());
+            applyDimension(TypedValue.COMPLEX_UNIT_SP, 12, getResources().getDisplayMetrics());
 
     private Canvas mCanvas;
     private Bitmap mBitmap;
@@ -41,27 +41,29 @@ public class ChangeColorWithTest extends View {
     private Paint mTextPaint;
 
     public ChangeColorWithTest(Context context) {
-        this(context,null);
+        this(context, null);
     }
 
     public ChangeColorWithTest(Context context, AttributeSet attrs) {
-        this(context,attrs,0);
+        this(context, attrs, 0);
     }
+
     /**
      * 获取自定义属性的值
+     *
      * @param context
      * @param attrs
      * @param defStyleAttr
      */
     public ChangeColorWithTest(Context context, AttributeSet attrs, int defStyleAttr) {
-        super(context,attrs,defStyleAttr);
+        super(context, attrs, defStyleAttr);
 
         TypedArray a = context.obtainStyledAttributes(attrs,
                 R.styleable.ChangeColorWithTest);
 
         int n = a.getIndexCount();
 
-        for(int i = 0;i < n;i++) {
+        for (int i = 0; i < n; i++) {
             int attr = a.getIndex(i);
             switch (attr) {
                 case R.styleable.ChangeColorWithTest_icon1:
@@ -69,14 +71,14 @@ public class ChangeColorWithTest extends View {
                     mIconBitmap = drawable.getBitmap();
                     break;
                 case R.styleable.ChangeColorWithTest_color1:
-                    mColor = a.getColor(attr,0x27A5F9);
+                    mColor = a.getColor(attr, 0x27A5F9);
                     break;
                 case R.styleable.ChangeColorWithTest_text:
                     mText = a.getString(attr);
                     break;
                 case R.styleable.ChangeColorWithTest_text_size:
                     mTextSize = (int) a.getDimension(attr, TypedValue.
-                            applyDimension(TypedValue.COMPLEX_UNIT_SP,12,
+                            applyDimension(TypedValue.COMPLEX_UNIT_SP, 12,
                                     getResources().getDisplayMetrics()));
                     break;
             }
@@ -88,8 +90,7 @@ public class ChangeColorWithTest extends View {
         mTextPaint = new Paint();
         mTextPaint.setTextSize(mTextSize);
         mTextPaint.setColor(0x27A5F9);
-        mTextPaint.getTextBounds(mText,0,mText.length(),mTextBound);
-
+        mTextPaint.getTextBounds(mText, 0, mText.length(), mTextBound);
 
 
     }
@@ -99,34 +100,35 @@ public class ChangeColorWithTest extends View {
     protected void onMeasure(int widthMeasureSpec, int heightMeasureSpec) {
         super.onMeasure(widthMeasureSpec, heightMeasureSpec);
         int iconWidth = Math.min(getMeasuredWidth() - getPaddingLeft()
-                - getPaddingRight(),getMeasuredHeight() - getPaddingTop()
+                - getPaddingRight(), getMeasuredHeight() - getPaddingTop()
                 - getPaddingBottom() - mTextBound.height());
 
         int left = getMeasuredWidth() / 2 - iconWidth / 2;
         int top = getMeasuredHeight() / 2 - (mTextBound.height() + iconWidth)
                 / 2;
-        mIconRect = new Rect(left,top,left + iconWidth,top + iconWidth);
+        mIconRect = new Rect(left, top, left + iconWidth, top + iconWidth);
 
     }
 
 
     @Override
     protected void onDraw(Canvas canvas) {
-        canvas.drawBitmap(mIconBitmap,null,mIconRect,null);
+        canvas.drawBitmap(mIconBitmap, null, mIconRect, null);
 
         int alpha = (int) Math.ceil(255 * mAlpha);
 
         //内存去准备mBitmap,setAlpha,纯色，xfermode,图标
         setupTargetBitmap(alpha);
 
-        drawSourceText(canvas,alpha);
-        drawTargetText(canvas,alpha);
-        canvas.drawBitmap(mBitmap,0,0,null);
+        drawSourceText(canvas, alpha);
+        drawTargetText(canvas, alpha);
+        canvas.drawBitmap(mBitmap, 0, 0, null);
     }
 
 
     /**
      * 绘制变色的文本
+     *
      * @param canvas
      * @param alpha
      */
@@ -135,12 +137,13 @@ public class ChangeColorWithTest extends View {
         mTextPaint.setAlpha(alpha);
         int x = getMeasuredWidth() / 2 - mTextBound.width() / 2;
         int y = mIconRect.bottom + mTextBound.height();
-        canvas.drawText(mText,x,y,mTextPaint);
+        canvas.drawText(mText, x, y, mTextPaint);
     }
 
 
     /**
      * 绘制原文本
+     *
      * @param canvas
      * @param alpha
      */
@@ -149,7 +152,7 @@ public class ChangeColorWithTest extends View {
         mTextPaint.setAlpha(255 - alpha);
         int x = getMeasuredWidth() / 2 - mTextBound.width() / 2;
         int y = mIconRect.bottom + mTextBound.height();
-        canvas.drawText(mText,x,y,mTextPaint);
+        canvas.drawText(mText, x, y, mTextPaint);
 
     }
 
@@ -158,7 +161,7 @@ public class ChangeColorWithTest extends View {
      */
     private void setupTargetBitmap(int alpha) {
 
-        mBitmap = Bitmap.createBitmap(getMeasuredWidth(),getMeasuredHeight(),
+        mBitmap = Bitmap.createBitmap(getMeasuredWidth(), getMeasuredHeight(),
                 Bitmap.Config.ARGB_8888);
         mCanvas = new Canvas(mBitmap);
         mPaint = new Paint();
@@ -166,10 +169,10 @@ public class ChangeColorWithTest extends View {
         mPaint.setAlpha(alpha);
         mPaint.setAntiAlias(true);
         mPaint.setDither(true);
-        mCanvas.drawRect(mIconRect,mPaint);
+        mCanvas.drawRect(mIconRect, mPaint);
         mPaint.setXfermode(new PorterDuffXfermode(PorterDuff.Mode.DST_IN));
         mPaint.setAlpha(255);
-        mCanvas.drawBitmap(mIconBitmap,null,mIconRect,mPaint);
+        mCanvas.drawBitmap(mIconBitmap, null, mIconRect, mPaint);
 
 
     }
@@ -181,14 +184,14 @@ public class ChangeColorWithTest extends View {
     @Override
     protected Parcelable onSaveInstanceState() {
         Bundle bundle = new Bundle();
-        bundle.putParcelable(INSTANCE_STATUS,super.onSaveInstanceState());
-        bundle.putFloat(STATUS_ALPHA,mAlpha);
+        bundle.putParcelable(INSTANCE_STATUS, super.onSaveInstanceState());
+        bundle.putFloat(STATUS_ALPHA, mAlpha);
         return bundle;
     }
 
     @Override
     protected void onRestoreInstanceState(Parcelable state) {
-        if(state instanceof Bundle) {
+        if (state instanceof Bundle) {
             Bundle bundle = (Bundle) state;
             mAlpha = bundle.getFloat(STATUS_ALPHA);
             super.onRestoreInstanceState(bundle.getParcelable(INSTANCE_STATUS));
@@ -207,7 +210,7 @@ public class ChangeColorWithTest extends View {
      * 重绘
      */
     private void invalidateView() {
-        if(Looper.getMainLooper() == Looper.myLooper()) {
+        if (Looper.getMainLooper() == Looper.myLooper()) {
             invalidate();
         } else {
             postInvalidate();

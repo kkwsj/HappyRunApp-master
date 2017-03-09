@@ -13,6 +13,7 @@ import android.widget.TextView;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
+
 /**
  * @author wangshujie
  */
@@ -89,16 +90,16 @@ public class SideBar extends View {
                 break;
             default:
                 if (oldChoose != c) {
-                            if (c >= 0 && c < indexStrings.size()) {
-                                if (listener != null) {
-                                    listener.onTouchingLetterChanged(indexStrings.get(c));
-                                }
-                                if (mTextDialog != null) {
-                                    mTextDialog.setText(indexStrings.get(c));
-                                    mTextDialog.setVisibility(View.VISIBLE);
-                                }
+                    if (c >= 0 && c < indexStrings.size()) {
+                        if (listener != null) {
+                            listener.onTouchingLetterChanged(indexStrings.get(c));
+                        }
+                        if (mTextDialog != null) {
+                            mTextDialog.setText(indexStrings.get(c));
+                            mTextDialog.setVisibility(View.VISIBLE);
+                        }
 
-                                choose = c;
+                        choose = c;
                         invalidate();
                     }
                 }

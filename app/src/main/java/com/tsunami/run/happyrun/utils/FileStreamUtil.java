@@ -15,8 +15,9 @@ public class FileStreamUtil {
 
     /**
      * 将数据存储到指定的文件中
+     *
      * @param context
-     * @param data  文件名
+     * @param data    文件名
      */
     public static void save(Context context, String data) {
         FileOutputStream out;
@@ -40,8 +41,9 @@ public class FileStreamUtil {
 
     /**
      * 从文件中读取数据
+     *
      * @param context
-     * @return  字符串
+     * @return 字符串
      */
     public static String load(Context context) {
         FileInputStream in;

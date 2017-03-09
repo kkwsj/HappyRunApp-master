@@ -9,7 +9,6 @@ import android.support.v7.widget.RecyclerView;
 import android.support.v7.widget.Toolbar;
 import android.transition.Slide;
 import android.view.MenuItem;
-import android.view.View;
 import android.view.Window;
 import android.widget.Toast;
 
@@ -21,12 +20,11 @@ import com.tsunami.run.happyrun.utils.weather.WeatherDataUtil;
 /**
  * Created by 2010330579 on 2016/3/27.
  */
-public class DetailWeatherActivity extends AppCompatActivity{
+public class DetailWeatherActivity extends AppCompatActivity {
 
     private SwipeRefreshLayout mSwipeRefresh;
     private RecyclerView mRecyclerView;
     private DetailWeatherAdapter mDetailAdapter;
-    private Toolbar mToolBar;
 
     private boolean isRefresh = false;
 
@@ -66,7 +64,7 @@ public class DetailWeatherActivity extends AppCompatActivity{
 
 //                    try {
 //                        Thread.sleep(1000);
-                        loadApi();
+                    loadApi();
 //                    } catch (InterruptedException e) {
 //                        e.printStackTrace();
 //                    }
@@ -124,7 +122,7 @@ public class DetailWeatherActivity extends AppCompatActivity{
     @Override
     public boolean onOptionsItemSelected(MenuItem item) {
         int id = item.getItemId();
-        switch (id){
+        switch (id) {
             case android.R.id.home:
                 finish();
                 return true;

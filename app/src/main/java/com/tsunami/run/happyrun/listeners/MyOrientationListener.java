@@ -15,6 +15,7 @@ public class MyOrientationListener implements SensorEventListener {
     private Sensor mSensor;
 
     private float lastX;
+
     public MyOrientationListener(Context context) {
         this.mContext = context;
     }
@@ -22,13 +23,13 @@ public class MyOrientationListener implements SensorEventListener {
     public void start() {
         mSensorManager = (SensorManager) mContext
                 .getSystemService(Context.SENSOR_SERVICE);
-        if(mSensorManager != null) {
+        if (mSensorManager != null) {
             // 获得方向传感器
             mSensor = mSensorManager.getDefaultSensor(Sensor.TYPE_ORIENTATION);
         }
 
-        if(mSensor != null) {
-            mSensorManager.registerListener(this,mSensor,
+        if (mSensor != null) {
+            mSensorManager.registerListener(this, mSensor,
                     SensorManager.SENSOR_DELAY_UI);
         }
     }
@@ -36,6 +37,7 @@ public class MyOrientationListener implements SensorEventListener {
     public void stop() {
         mSensorManager.unregisterListener(this);
     }
+
     @Override
     public void onAccuracyChanged(Sensor sensor, int accuracy) {
 
@@ -45,11 +47,11 @@ public class MyOrientationListener implements SensorEventListener {
     @SuppressWarnings({"deprecation"})
     @Override
     public void onSensorChanged(SensorEvent event) {
-        if(event.sensor.getType() == Sensor.TYPE_ORIENTATION) {
+        if (event.sensor.getType() == Sensor.TYPE_ORIENTATION) {
             float x = event.values[SensorManager.DATA_X];
 
-            if(Math.abs(x - lastX) > 1.0) {
-                if(mOnOrientationListener != null) {
+            if (Math.abs(x - lastX) > 1.0) {
+                if (mOnOrientationListener != null) {
                     mOnOrientationListener.onOrientationChanged(x);
                 }
             }
@@ -59,15 +61,13 @@ public class MyOrientationListener implements SensorEventListener {
     }
 
     private OnOrientationListener mOnOrientationListener;
+
     public void setOnOrientationListener(
-            OnOrientationListener mOnOrientationListener){
+            OnOrientationListener mOnOrientationListener) {
         this.mOnOrientationListener = mOnOrientationListener;
 
     }
 
-//    public void setmSensorManager(SensorManager mSensorManager) {
-//        this.mSensorManager = mSensorManager;
-//    }
     public interface OnOrientationListener {
         void onOrientationChanged(float x);
     }

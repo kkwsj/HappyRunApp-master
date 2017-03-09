@@ -22,9 +22,10 @@ public class Info implements Serializable {
     public static List<Info> infos = new ArrayList<Info>();
 
     static {
-        infos.add(new Info(34.242652,108.971171, R.drawable.a01,"英伦贵族小旅馆",
-        "距离200米",1456));
+        infos.add(new Info(34.242652, 108.971171, R.drawable.a01, "英伦贵族小旅馆",
+                "距离200米", 1456));
     }
+
     public Info(double latitude, double longitude,
                 int imageId, String name, String diatance, int zan) {
         this.latitude = latitude;
@@ -32,8 +33,9 @@ public class Info implements Serializable {
         this.imageId = imageId;
         this.name = name;
         this.distance = distance;
-        this.zan =zan;
+        this.zan = zan;
     }
+
     public double getLatitude() {
         return latitude;
     }

@@ -23,15 +23,13 @@ import java.io.IOException;
 /**
  * Created by 2010330579 on 2016/3/27.
  */
-public class ChoosePic_Activity extends Activity{
+public class ChoosePic_Activity extends Activity {
 
     public static final int TAKE_PHOTO = 1;
 
     public static final int CROP_PHOTO = 2;
 
     private Button takePhoto;
-
-    private ImageView picture;
 
     private RoundImageView my_photo;
 
@@ -43,10 +41,9 @@ public class ChoosePic_Activity extends Activity{
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.editpic_layout);
-        //setContentView(R.layout.page_me);
+
         takePhoto = (Button) findViewById(R.id.take_photo);
-        picture = (ImageView) findViewById(R.id.picture);
-        my_photo= (RoundImageView) findViewById(R.id.my_photo);
+        my_photo = (RoundImageView) findViewById(R.id.my_photo);
         takePhoto.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -71,9 +68,9 @@ public class ChoosePic_Activity extends Activity{
             @Override
             public void onClick(View v) {
                 // 创建File对象，用于存储拍照后的图片
-                File outputImage = new File(Environment.getExternalStorageDirectory(),"output_image.jpg");
+                File outputImage = new File(Environment.getExternalStorageDirectory(), "output_image.jpg");
                 try {
-                    if(outputImage.exists()) {
+                    if (outputImage.exists()) {
                         outputImage.delete();
 
                     }
@@ -84,12 +81,11 @@ public class ChoosePic_Activity extends Activity{
 
                 imageUri = Uri.fromFile(outputImage);
                 Intent intent = new Intent("android.intent.action.GET_CONTENT");
-                intent.setDataAndType(imageUri,"image/*");
-                intent.putExtra("crop",true);
-                intent.putExtra("scale",true);
-                // intent.putExtra("return-data",true);
-                intent.putExtra(MediaStore.EXTRA_OUTPUT,imageUri);
-                startActivityForResult(intent,CROP_PHOTO);
+                intent.setDataAndType(imageUri, "image/*");
+                intent.putExtra("crop", true);
+                intent.putExtra("scale", true);
+                intent.putExtra(MediaStore.EXTRA_OUTPUT, imageUri);
+                startActivityForResult(intent, CROP_PHOTO);
             }
 
 
@@ -98,26 +94,24 @@ public class ChoosePic_Activity extends Activity{
     }
 
     @Override
-    protected void onActivityResult(int requestCode,int resultCode,Intent data) {
+    protected void onActivityResult(int requestCode, int resultCode, Intent data) {
         switch (requestCode) {
             case TAKE_PHOTO:
-                if(resultCode == RESULT_OK) {
+                if (resultCode == RESULT_OK) {
                     Intent intent = new Intent("com.android.camera.action.CROP");
-                    intent.setDataAndType(imageUri,"image/*");
-                    intent.putExtra("scale",true);
-                    intent.putExtra(MediaStore.EXTRA_OUTPUT,imageUri);
-                    startActivityForResult(intent,CROP_PHOTO); // 启动裁剪程序
+                    intent.setDataAndType(imageUri, "image/*");
+                    intent.putExtra("scale", true);
+                    intent.putExtra(MediaStore.EXTRA_OUTPUT, imageUri);
+                    startActivityForResult(intent, CROP_PHOTO); // 启动裁剪程序
                 }
                 break;
             case CROP_PHOTO:
-                if(resultCode == RESULT_OK) {
-                    if(data != null) {
+                if (resultCode == RESULT_OK) {
+                    if (data != null) {
                         imageUri = data.getData();
                     }
                     try {
                         Bitmap bitmap = BitmapFactory.decodeStream(getContentResolver().openInputStream(imageUri));
-                        //picture.setImageBitmap(bitmap);
-                        //my_photo.setImageBitmap(bitmap);
 
 
                         new me_fragment();

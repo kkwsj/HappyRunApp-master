@@ -91,9 +91,9 @@ public class DetailWeatherAdapter extends RecyclerView.Adapter<RecyclerView.View
      * 今日详情
      */
     class TodayViewHolder extends RecyclerView.ViewHolder {
-        
+
         private final int TODAY_SIZE = 4;
-        
+
         private LinearLayout today_ll;
         private TextView sunrise_tv;
         private TextView sunset_tv;
@@ -140,7 +140,7 @@ public class DetailWeatherAdapter extends RecyclerView.Adapter<RecyclerView.View
 
                 String daily_forecast_str = WeatherDataUtil.getDailyForecast();
                 JSONArray daily_forecast = new JSONArray(daily_forecast_str);
-                JSONObject today= daily_forecast.getJSONObject(0);
+                JSONObject today = daily_forecast.getJSONObject(0);
                 String sun_str = today.getString("astro");
                 JSONObject sun = new JSONObject(sun_str);
                 sunrise_tv.setText(sun.getString("sr"));
@@ -180,7 +180,7 @@ public class DetailWeatherAdapter extends RecyclerView.Adapter<RecyclerView.View
 
         public void loadData() {
             try {
-                for (int i = 0 ; i < WEEK_SIZE; i++) {
+                for (int i = 0; i < WEEK_SIZE; i++) {
                     JSONArray daily_forecast = new JSONArray(WeatherDataUtil.getDailyForecast());
                     JSONObject days = daily_forecast.getJSONObject(i);
                     // 日期
@@ -257,7 +257,7 @@ public class DetailWeatherAdapter extends RecyclerView.Adapter<RecyclerView.View
             loadData();
         }
 
-        private void setMoreTvVisibility(int k){
+        private void setMoreTvVisibility(int k) {
             flag_down = !flag_down;
             if (flag_down) {
                 Bitmap bmp = BitmapFactory.decodeResource(mContext.getResources(), R.drawable.life_item_up);
@@ -268,7 +268,7 @@ public class DetailWeatherAdapter extends RecyclerView.Adapter<RecyclerView.View
                 Bitmap bmp = BitmapFactory.decodeResource(mContext.getResources(), R.drawable.life_item_down);
                 up_down_iv[k].setImageBitmap(bmp);
                 more_tv[k].setVisibility(View.GONE);
-                detail_item_cond_ll[k].setPadding(0, 18 * (int)ScreenUtil.getDeviceDensity(mContext), 0, 0);
+                detail_item_cond_ll[k].setPadding(0, 18 * (int) ScreenUtil.getDeviceDensity(mContext), 0, 0);
             }
         }
 
@@ -288,7 +288,7 @@ public class DetailWeatherAdapter extends RecyclerView.Adapter<RecyclerView.View
             bmp = BitmapFactory.decodeResource(mContext.getResources(), R.drawable.life_cw);
             icon_iv[6].setImageBitmap(bmp);
             bmp = BitmapFactory.decodeResource(mContext.getResources(), R.drawable.life_item_down);
-            for (int i = 0; i < LIFE_SIZE;i++) {
+            for (int i = 0; i < LIFE_SIZE; i++) {
                 up_down_iv[i].setImageBitmap(bmp);
             }
             item_tv[0].setText(mContext.getString(R.string.life_cmf));

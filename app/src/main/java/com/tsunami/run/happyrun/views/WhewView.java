@@ -11,7 +11,7 @@ import java.util.List;
 
 /**
  * Created by 2010330579 on 2016/3/30.
- *
+ * <p>
  * 咻一咻的特效即打开跑步功能的按钮特效
  */
 public class WhewView extends View {

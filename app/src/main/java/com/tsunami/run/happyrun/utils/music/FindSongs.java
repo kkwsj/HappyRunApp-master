@@ -4,7 +4,6 @@ import android.content.ContentResolver;
 import android.content.Context;
 import android.database.Cursor;
 import android.provider.MediaStore;
-import android.widget.ExpandableListView;
 import android.widget.ListView;
 
 import com.tsunami.run.happyrun.adapters.music.MyListViewAdapter;
@@ -72,7 +71,7 @@ public class FindSongs {
     }
 
 
-    public void setListAdpter(Context context, List<Mp3Info> mp3Infos,ListView mMusicList) {
+    public void setListAdpter(Context context, List<Mp3Info> mp3Infos, ListView mMusicList) {
 
         List<HashMap<String, String>> mp3list = new ArrayList<HashMap<String, String>>();
         MyListViewAdapter mAdapter = new MyListViewAdapter(context, mp3Infos);

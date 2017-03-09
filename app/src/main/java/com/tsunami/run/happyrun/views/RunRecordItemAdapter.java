@@ -22,12 +22,13 @@ public class RunRecordItemAdapter extends ArrayAdapter<RunRecordItem> {
         super(context, resource, object);
         resourceId = resource;
     }
+
     @Override
-    public View getView(int position, View convertView, ViewGroup parent){
-        RunRecordItem recordItem= getItem(position);
-        ViewHolder viewHolder ;
-        View view; //= LayoutInflater.from(getContext()).inflate(resourceId, null);
-        if(convertView==null){
+    public View getView(int position, View convertView, ViewGroup parent) {
+        RunRecordItem recordItem = getItem(position);
+        ViewHolder viewHolder;
+        View view;
+        if (convertView == null) {
             view = LayoutInflater.from(getContext()).inflate(resourceId, null);
             viewHolder = new ViewHolder();
 
@@ -35,7 +36,7 @@ public class RunRecordItemAdapter extends ArrayAdapter<RunRecordItem> {
             viewHolder.distance = (TextView) view.findViewById(R.id.distance);
             viewHolder.duration = (TextView) view.findViewById(R.id.duration);
             view.setTag(viewHolder);
-        }else{
+        } else {
             view = convertView;
             viewHolder = (ViewHolder) view.getTag();
         }
@@ -45,7 +46,8 @@ public class RunRecordItemAdapter extends ArrayAdapter<RunRecordItem> {
         viewHolder.duration.setText(recordItem.getDuration());
         return view;
     }
-    class ViewHolder{
+
+    class ViewHolder {
         TextView date;
         TextView distance;
         TextView duration;

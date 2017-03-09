@@ -7,30 +7,31 @@ import net.sourceforge.pinyin4j.format.HanyuPinyinToneType;
 import net.sourceforge.pinyin4j.format.exception.BadHanyuPinyinOutputFormatCombination;
 
 public class PinyinUtil {
-	
-	/**
-	 * 根据汉字获取对应的拼音
-	 * @param str
-	 * @return
-	 */
-	public static String getPinyin(String str) {
-		StringBuilder sb = null;
-		if("".equals(str))return "#";
 
-		try {
-			// 黑马 -> HEIMA
-			// 设置输出配置
-			HanyuPinyinOutputFormat format = new HanyuPinyinOutputFormat();
-			// 设置大写
-			format.setCaseType(HanyuPinyinCaseType.UPPERCASE);
-			// 设置不需要音调
-			format.setToneType(HanyuPinyinToneType.WITHOUT_TONE);
+    /**
+     * 根据汉字获取对应的拼音
+     *
+     * @param str
+     * @return
+     */
+    public static String getPinyin(String str) {
+        StringBuilder sb = null;
+        if ("".equals(str)) return "#";
 
-			sb = new StringBuilder();
+        try {
+            // 黑马 -> HEIMA
+            // 设置输出配置
+            HanyuPinyinOutputFormat format = new HanyuPinyinOutputFormat();
+            // 设置大写
+            format.setCaseType(HanyuPinyinCaseType.UPPERCASE);
+            // 设置不需要音调
+            format.setToneType(HanyuPinyinToneType.WITHOUT_TONE);
 
-			// 获取字符数组
-			char[] charArray = str.toCharArray();
-			for (int i = 0; i < charArray.length; i++) {
+            sb = new StringBuilder();
+
+            // 获取字符数组
+            char[] charArray = str.toCharArray();
+            for (int i = 0; i < charArray.length; i++) {
                 char c = charArray[i];
                 // 如果是空格, 跳过当前的循环
                 if (Character.isWhitespace(c)) {
@@ -53,11 +54,11 @@ public class PinyinUtil {
                     sb.append(c);
                 }
             }
-		} catch (Exception e) {
-			e.printStackTrace();
-			return "#";
-		}
+        } catch (Exception e) {
+            e.printStackTrace();
+            return "#";
+        }
 
-		return sb.toString();
-	}
+        return sb.toString();
+    }
 }

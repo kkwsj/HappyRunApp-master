@@ -1,4 +1,5 @@
 package com.tsunami.run.happyrun.activities;
+
 import android.app.Activity;
 import android.os.Bundle;
 import android.os.Handler;
@@ -7,7 +8,6 @@ import android.util.Log;
 import android.view.View;
 import android.view.View.OnClickListener;
 import android.widget.Button;
-import android.widget.Toast;
 
 import com.tsunami.run.happyrun.R;
 import com.tsunami.run.happyrun.utils.PeriscopeLayout;
@@ -28,16 +28,6 @@ public class HeartDanceActivity extends Activity {
         periscopeLayout = (PeriscopeLayout) findViewById(R.id.periscope);
 
         btn_start = (Button) findViewById(R.id.btn_start);
-//        btn_start.setOnClickListener(new View.OnClickListener() {
-//
-//            @Override
-//            public void onClick(View v) {
-//                //调用添加泡泡的方法
-//                periscopeLayout.addHeart();
-//
-//            }
-//        });
-
 
 
         btn_start.setOnClickListener(new OnClickListener() {
@@ -45,10 +35,10 @@ public class HeartDanceActivity extends Activity {
             @Override
             public void onClick(View v) {
                 //调用添加泡泡的方法
-                if(heartDanceDepth < 5) {
+                if (heartDanceDepth < 5) {
                     new Thread(new ThreadShow()).start();
                     heartDanceDepth++;
-                    Log.d(TAG,"danceDepth++");
+                    Log.d(TAG, "danceDepth++");
                 }
             }
         });
@@ -60,7 +50,9 @@ public class HeartDanceActivity extends Activity {
             if (msg.what == 1) {
                 periscopeLayout.addHeart();
             }
-        };
+        }
+
+        ;
     };
 
     // 线程类
@@ -75,11 +67,10 @@ public class HeartDanceActivity extends Activity {
                     Message msg = new Message();
                     msg.what = 1;
                     handler.sendMessage(msg);
-//                    System.out.println("send...");
                 } catch (Exception e) {
                     // TODO Auto-generated catch block
                     e.printStackTrace();
-//                    System.out.println("thread error...");
+
                 }
             }
         }

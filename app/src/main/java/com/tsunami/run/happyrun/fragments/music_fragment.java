@@ -4,7 +4,6 @@ import android.content.Intent;
 import android.media.MediaPlayer;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
-import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -12,18 +11,15 @@ import android.widget.AdapterView;
 import android.widget.Button;
 import android.widget.ListView;
 import android.widget.TextView;
-import android.widget.Toast;
 
 import com.tsunami.run.happyrun.R;
 import com.tsunami.run.happyrun.activities.FullSreenMusicPlayerActivity;
-import com.tsunami.run.happyrun.activities.GaoDeMapActivity;
 import com.tsunami.run.happyrun.adapters.music.MyListViewAdapter;
 import com.tsunami.run.happyrun.utils.music.CharacterParser;
 import com.tsunami.run.happyrun.utils.music.FindSongs;
 import com.tsunami.run.happyrun.utils.music.Mp3Info;
 import com.tsunami.run.happyrun.utils.music.SideBar;
 
-import java.io.IOException;
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
@@ -33,15 +29,9 @@ import java.util.List;
  */
 public class music_fragment extends Fragment {
     private ListView mListView;
-    private Button mFind;
     private FindSongs finder;
     private List<Mp3Info> mp3Infos;
     private MyListViewAdapter adapter;
-    public MediaPlayer mediaPlayer= new MediaPlayer();
-    private int lastPosition;
-    boolean musicIsPlaying;
-
-    //
     private CharacterParser characterParser;
     private SideBar sideBar;
     private TextView dialog;
@@ -53,24 +43,18 @@ public class music_fragment extends Fragment {
                 R.layout.activity_music, container, false);
 
         mListView = (ListView) rootView.findViewById(R.id.listview);
-        //mFind = ((Button) rootView.findViewById(R.id.find));
         finder = new FindSongs();
         mp3Infos = finder.getMp3Infos(getActivity().getContentResolver());
-
-        // 初始化音乐列表
- //       adapter = new MyListViewAdapter(getContext(), mp3Infos);
         finder.setListAdpter(getContext(), mp3Infos, mListView);
 
         // 点击歌曲列表响应
         mListView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
             @Override
-            public void onItemClick(AdapterView<?> parent,View view,int position,long id) {
+            public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
 
                 int musicPosition = position;
-                Intent intent = new Intent(getActivity(),FullSreenMusicPlayerActivity.class);
-
-                //intent.putExtra("musicIsPlaying",musicIsPlaying);
-                intent.putExtra("musicPosition",musicPosition);
+                Intent intent = new Intent(getActivity(), FullSreenMusicPlayerActivity.class);
+                intent.putExtra("musicPosition", musicPosition);
                 startActivity(intent);
 
             }
@@ -93,7 +77,6 @@ public class music_fragment extends Fragment {
             public void onTouchingLetterChanged(String s) {
                 int position = adapter.getPositionForSection(s.charAt(0));
                 if (position != -1) {
-                    //    mListView.scrollToPosition(position + 1);
                     mListView.smoothScrollToPosition(position + 1);
                 }
             }
@@ -104,6 +87,7 @@ public class music_fragment extends Fragment {
 
     /**
      * 从文字中取出letter比较   1
+     *
      * @param date
      * @return
      */
@@ -136,7 +120,7 @@ public class music_fragment extends Fragment {
             mSortList.add(sortModel);
         }
         Collections.sort(indexString);
-//        sideBar.setIndexText(indexString);
+
         return mSortList;
     }
 }

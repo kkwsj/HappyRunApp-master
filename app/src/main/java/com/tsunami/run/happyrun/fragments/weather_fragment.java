@@ -49,12 +49,15 @@ public class weather_fragment extends Fragment {
         @Override
         public void onStatusChanged(String provider, int status, Bundle extras) {
         }
+
         @Override
         public void onProviderEnabled(String provider) {
         }
+
         @Override
         public void onProviderDisabled(String provider) {
         }
+
         @Override
         public void onLocationChanged(Location location) {
             // 更新当前设备的位置信息
@@ -240,6 +243,7 @@ public class weather_fragment extends Fragment {
 
     /**
      * 获取城市名
+     *
      * @param location 位置信息
      */
     private void connectCity(Location location) {

@@ -1,6 +1,7 @@
 package com.tsunami.run.happyrun.utils.music;
 
 import android.util.Log;
+
 /**
  * @author wangshujie
  */

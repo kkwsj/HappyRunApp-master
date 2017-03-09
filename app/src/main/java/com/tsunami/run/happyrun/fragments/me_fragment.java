@@ -1,13 +1,11 @@
 package com.tsunami.run.happyrun.fragments;
 
-import android.Manifest;
 import android.annotation.SuppressLint;
 import android.app.AlertDialog;
 import android.content.Context;
 import android.content.DialogInterface;
 import android.content.Intent;
 import android.graphics.Bitmap;
-import android.graphics.BitmapFactory;
 import android.net.Uri;
 import android.os.Bundle;
 import android.os.Environment;
@@ -27,7 +25,6 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import com.tsunami.run.happyrun.R;
-import com.tsunami.run.happyrun.activities.HeartDanceActivity;
 import com.tsunami.run.happyrun.activities.KnowledgeAboutRunActivity;
 import com.tsunami.run.happyrun.activities.RunHistoryActivity;
 import com.tsunami.run.happyrun.utils.AndroidUtil;
@@ -47,7 +44,6 @@ import java.util.Date;
  */
 public class me_fragment extends Fragment {
 
-    //private static final String TAG = getActivity().class.getSimpleName();
 
     private static final String[] YEARS = new String[]{"1984", "1985", "1986", "1987", "1988", "1989",
             "1990", "1991", "1992", "1993", "1994", "1995", "1996", "1997", "1998", "1999",
@@ -59,41 +55,21 @@ public class me_fragment extends Fragment {
     private RelativeLayout re_avatar;
     private RelativeLayout re_name;
     private RelativeLayout re_sex;
-    private RelativeLayout re_region;
     private RelativeLayout re_age;
-    private RelativeLayout re_erweima;
-    private RelativeLayout re_gesturepassword;
     private RelativeLayout re_settings;
     private RelativeLayout re_sign;
     private RelativeLayout re_knowledge;
 
     private ImageView iv_avatar;
     private TextView tv_name;
-    private TextView tv_fxid;
     private TextView tv_sex;
     private TextView tv_sign;
     private TextView tv_age;
-    private TextView tv_temp_knowledge;
 
-
-
-    private String imageName;
-    private static final int PHOTO_REQUEST_TAKEPHOTO = 1;// 拍照
-    private static final int PHOTO_REQUEST_GALLERY = 2;// 从相册中选择
-    private static final int PHOTO_REQUEST_CUT = 3;// 结果
-    private static final int UPDATE_FXID = 4;// 结果
-    private static final int UPDATE_NICK = 5;// 结果
-
-    String hxid;
-    String fxid;
-    String sex;
-    String sign;
     String nick;
-    String age;
 
     private Context context = this.context;
 
-    public static final int TAKE_PHOTO = 1;
     public static final int CROP_PHOTO = 2;
 
     // 拍照按钮
@@ -109,9 +85,9 @@ public class me_fragment extends Fragment {
     private ImageView img;
     private Button btnUpload;
     //private HttpUtils httpUtils;
-    private String URL="http://192.168.1.119:8080/ServeNew/picCheck";
+    private String URL = "http://192.168.1.119:8080/ServeNew/picCheck";
 
-    private String[] items = { "拍照", "相册" ,"上传头像"};
+    private String[] items = {"拍照", "相册", "上传头像"};
     private String title = "选择照片";
 
     private static final int PHOTO_CARMERA = 1;
@@ -133,7 +109,7 @@ public class me_fragment extends Fragment {
 //            strUser = "0" + strUser;
 //        }
 //        return strUser + User.getInstance().getUsername() + ".png";
-        return  ".png";
+        return ".png";
     }
 
     File outputImage = new File(Environment.getExternalStorageDirectory(), "username.jpg");
@@ -148,10 +124,7 @@ public class me_fragment extends Fragment {
         re_avatar = (RelativeLayout) rootView.findViewById(R.id.re_avatar);
         re_name = (RelativeLayout) rootView.findViewById(R.id.re_name);
         re_sex = (RelativeLayout) rootView.findViewById(R.id.re_sex);
-        //re_region = (RelativeLayout) rootView.findViewById(R.id.re_region);
         re_age = (RelativeLayout) rootView.findViewById(R.id.re_age);
-//        re_erweima = (RelativeLayout) this.findViewById(R.id.re_erweima);
-//        re_gesturepassword = (RelativeLayout) this.findViewById(R.id.re_gesturepassword);
         re_settings = (RelativeLayout) rootView.findViewById(R.id.re_settings);
         re_sign = (RelativeLayout) rootView.findViewById(R.id.re_sign);
         re_knowledge = (RelativeLayout) rootView.findViewById(R.id.run_knowledge);
@@ -161,7 +134,7 @@ public class me_fragment extends Fragment {
         tv_sex = (TextView) rootView.findViewById(R.id.tv_sex);
         tv_sign = (TextView) rootView.findViewById(R.id.tv_sign);
         tv_age = (TextView) rootView.findViewById(R.id.tv_age);
-        tv_temp_knowledge = (TextView) rootView.findViewById(R.id.tv_age);
+
 
         initView();
 
@@ -170,62 +143,15 @@ public class me_fragment extends Fragment {
 
 
     private void initView() {
-
-
         re_avatar.setOnClickListener(new MyListener());
         re_name.setOnClickListener(new MyListener());
         re_sex.setOnClickListener(new MyListener());
-       // re_region.setOnClickListener(new MyListener());
         re_age.setOnClickListener(new MyListener());
-//        re_erweima.setOnClickListener(new MyListener());
-//        re_gesturepassword.setOnClickListener(new MyListener());
         re_settings.setOnClickListener(new MyListener());
         re_sign.setOnClickListener(new MyListener());
         re_knowledge.setOnClickListener(new MyListener());
-        // 头像
-//        iv_avatar = (ImageView) this.findViewById(R.id.iv_avatar);
-//        tv_name = (TextView) this.findViewById(R.id.tv_name);
-//        tv_sex = (TextView) this.findViewById(R.id.tv_sex);
-//        tv_sign = (TextView) this.findViewById(R.id.tv_sign);
-//        tv_age = (TextView) this.findViewById(R.id.tv_age);
-
         tv_name.setText(nick);
 
-//        if (sex.equals("1")) {
-//            tv_sex.setText("男");
-//
-//        } else if (sex.equals("2")) {
-//            tv_sex.setText("女");
-//
-//        } else {
-//            tv_sex.setText("");
-//        }
-//
-//        if (sign.equals("0")) {
-//            tv_sign.setText("未填写");
-//        } else {
-//            tv_sign.setText(sign);
-//        }
-
-        // 创建File对象，用于存储拍照后的图片
-        //File outputImage = new File(Environment.getExternalStorageDirectory(), "output_image.jpg");
-//        try {
-//            imageUri = Uri.fromFile(outputImage);
-//            //Bitmap bitmap1 = BitmapFactory.decodeStream(getContentResolver().openInputStream(imageUri));
-////            if (bitmap1 != null) {
-////
-////
-////                //picture.setImageBitmap(bitmap);
-////                iv_avatar.setImageBitmap(bitmap1);
-////            } else {
-////
-////                //Bitmap bitmap = getLoacalBitmap("/sdcard/tempImage.jpg");
-////                // iv_avatar.setImageBitmap(bitmap);
-////            }
-//
-//        } catch (IOException e) {
-//            e.printStackTrace();
-//        }
     }
 
 
@@ -235,8 +161,6 @@ public class me_fragment extends Fragment {
         public void onClick(View v) {
             switch (v.getId()) {
                 case R.id.re_avatar:
-
-                    //showPhotoDialog();
                     AlertDialog.Builder dialog = AndroidUtil.getListDialogBuilder(
                             getActivity(), items, title, dialogListener);
                     dialog.show();
@@ -245,19 +169,10 @@ public class me_fragment extends Fragment {
                 case R.id.re_name:
                     showNameDialog(); //ZLF
                     break;
-//                case R.id.re_fxid:
-//
-//                    break;
                 case R.id.re_age:
                     showAgeDialog();
                     break;
 
-//                case R.id.re_erweima:
-//                    startActivity(new Intent(PersonActivity.this,MyErWeiMaActivity.class));
-//                    break;
-//                case R.id.re_gesturepassword:
-//                    startActivity(new Intent(PersonActivity.this,GestureEditActivity.class));
-//                    break;
                 case R.id.re_sex:
                     showSexDialog();
                     break;
@@ -268,12 +183,12 @@ public class me_fragment extends Fragment {
                     break;
 
                 case R.id.re_settings:
-                    Intent intent = new Intent(getActivity(),RunHistoryActivity.class);
+                    Intent intent = new Intent(getActivity(), RunHistoryActivity.class);
                     startActivity(intent);
                     break;
 
                 case R.id.run_knowledge:
-                    intent = new Intent(getActivity(),KnowledgeAboutRunActivity.class);
+                    intent = new Intent(getActivity(), KnowledgeAboutRunActivity.class);
                     startActivity(intent);
                     break;
 
@@ -288,34 +203,12 @@ public class me_fragment extends Fragment {
         public void onClick(DialogInterface dialog, int which) {
             switch (which) {
                 case 0:
-                    // 调用拍照
-
-//                    PermissionsManager.getInstance().requestPermissionsIfNecessaryForResult(getActivity(),
-//                            new String[]{Manifest.permission.CAMERA}, new PermissionsResultAction() {
-//
-//                                @Override
-//                                public void onGranted() {
-//                                    Log.i(TAG, "onGranted: Read Contacts");
-//                                    startCamera(dialog);
-//                                }
-//
-//                                @Override
-//                                public void onDenied(String permission) {
-//                                    Log.i(TAG, "onDenied: Read Contacts");
-//
-//
-//                                }
-//                            }
-//                    );
-                    //startCamera(dialog);
                     break;
                 case 1:
-                    // 调用相册
                     startPick(dialog);
                     break;
 
                 case 2:
-                   // upload();
                     break;
 
                 default:
@@ -328,8 +221,7 @@ public class me_fragment extends Fragment {
     public void onRequestPermissionsResult(int requestCode,
                                            @NonNull String[] permissions,
                                            @NonNull int[] grantResults) {
-//        Log.i(TAG, "Activity-onRequestPermissionsResult() PermissionsManager.notifyPermissionsChange()");
-//        PermissionsManager.getInstance().notifyPermissionsChange(permissions, grantResults);
+
     }
 
     private void showAgeDialog() {
@@ -341,7 +233,6 @@ public class me_fragment extends Fragment {
         wv.setOnWheelViewListener(new WheelView.OnWheelViewListener() {
             @Override
             public void onSelected(int selectedIndex, String item) {
-                //Log.d(TAG, "[Dialog]selectedIndex: " + selectedIndex + ", item: " + item);
                 selectedYear = item;
             }
         });
@@ -404,22 +295,6 @@ public class me_fragment extends Fragment {
         tv_paizhao.setOnClickListener(new View.OnClickListener() {
             @SuppressLint("SdCardPath")
             public void onClick(View v) {
-
-//                // 创建File对象，用于存储拍照后的图片
-//                //File outputImage = new File(Environment.getExternalStorageDirectory(), "output_image.jpg");
-//                try {
-//                    if (outputImage.exists()) {
-//                        outputImage.delete();
-//                    }
-//                    outputImage.createNewFile();
-//                } catch (IOException e) {
-//                    e.printStackTrace();
-//                }
-//                imageUri = Uri.fromFile(outputImage);
-//                Intent intent = new Intent("android.media.action.IMAGE_CAPTURE");
-//                intent.putExtra(MediaStore.EXTRA_OUTPUT, imageUri);
-//                startActivityForResult(intent, TAKE_PHOTO);
-
                 dlg.cancel();
             }
         });
@@ -428,8 +303,6 @@ public class me_fragment extends Fragment {
         tv_xiangce.setOnClickListener(new View.OnClickListener() {
             public void onClick(View v) {
 
-                // 创建File对象，用于存储拍照后的图片
-                //File outputImage = new File(Environment.getExternalStorageDirectory(),"output_image.jpg");
                 try {
                     if (outputImage.exists()) {
                         outputImage.delete();
@@ -456,13 +329,13 @@ public class me_fragment extends Fragment {
     public void back(View view) {
         getActivity().finish();
     }
-    public void showNameDialog(){
+
+    public void showNameDialog() {
         LayoutInflater factory = LayoutInflater.from(getActivity());//提示框
         final View view = factory.inflate(R.layout.dialog_edit, null);//这里必须是final的
-        final EditText edit=(EditText)view.findViewById(R.id.editText);//获得输入框对象
+        final EditText edit = (EditText) view.findViewById(R.id.editText);//获得输入框对象
 
         new AlertDialog.Builder(getActivity())
-                //   .setTitle("无数据,改变范围试试吧")//提示框标题
                 .setView(view)
                 .setPositiveButton("确定",//提示框的两个按钮
                         new android.content.DialogInterface.OnClickListener() {
@@ -475,10 +348,11 @@ public class me_fragment extends Fragment {
                         }).setNegativeButton("取消", null).create().show();
 
     }
-    public void showSignDialog(){
+
+    public void showSignDialog() {
         LayoutInflater factory = LayoutInflater.from(getActivity());//提示框
         final View view = factory.inflate(R.layout.dialog_edit, null);//这里必须是final的
-        final EditText edit=(EditText)view.findViewById(R.id.editText);//获得输入框对象
+        final EditText edit = (EditText) view.findViewById(R.id.editText);//获得输入框对象
 
         new AlertDialog.Builder(getActivity())
                 //   .setTitle("无数据,改变范围试试吧")//提示框标题
@@ -494,32 +368,6 @@ public class me_fragment extends Fragment {
                         }).setNegativeButton("取消", null).create().show();
     }
 
-
-//    // 上传文件到服务器
-//    protected void upload() {
-//        RequestParams params=new RequestParams();
-////        params.addBodyParameter("client", "kkswj");
-//        params.addBodyParameter(tempFile.getPath().replace("/", ""), tempFile);
-//        //params.addHeader("client",User.getInstance().getUsername());
-//
-//        Log.e("username", User.getInstance().getUsername());
-//        httpUtils.send(HttpMethod.POST,URL, params,new RequestCallBack<String>() {
-//
-//            @Override
-//            public void onFailure(HttpException e, String msg) {
-//                Toast.makeText(PersonActivity.this, "上传失败，检查一下服务器地址是否正确", Toast.LENGTH_SHORT).show();
-//                Log.i("MainActivity", e.getExceptionCode() + "====="
-//                        + msg);
-//            }
-//
-//            @Override
-//            public void onSuccess(ResponseInfo<String> responseInfo) {
-//                Toast.makeText(PersonActivity.this, "上传成功，马上去服务器看看吧！", Toast.LENGTH_SHORT).show();
-//                Log.i("MainActivity", "====upload_error====="
-//                        + responseInfo.result);
-//            }
-//        });
-//    }
 
     // 调用系统相机
     protected void startCamera(DialogInterface dialog) {
@@ -593,16 +441,11 @@ public class me_fragment extends Fragment {
             final Bitmap bmp = bundle.getParcelable("data");
             iv_avatar.setImageBitmap(bmp);
 
-//            EventBus.getDefault().post(
-//                    new PictureBitMap(bmp));
-//
-//            // 1
-//            UserDB.getInstance(getActivity()).saveUserHeadUrl(outputImage.getPath());
             Log.e("user photo", outputImage.getPath());
 
             saveCropPic(bmp);
             Log.i("MainActivity", tempFile.getAbsolutePath());
-            //upload();
+
         }
     }
 
@@ -634,7 +477,6 @@ public class me_fragment extends Fragment {
             }
         }
     }
-
 
 
 }

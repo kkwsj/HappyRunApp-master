@@ -26,7 +26,7 @@ import java.util.TimerTask;
 /**
  * Created by 2010330579 on 2016/3/27.
  */
-public class FullSreenMusicPlayerActivity extends AppCompatActivity implements View.OnClickListener{
+public class FullSreenMusicPlayerActivity extends AppCompatActivity implements View.OnClickListener {
 
     private TextView mEnd;
     private TextView mStart;
@@ -38,15 +38,10 @@ public class FullSreenMusicPlayerActivity extends AppCompatActivity implements V
     private FindSongs finder;
     private List<Mp3Info> mp3Infos;
 
-    //public music_fragment mRecord_fragment;
+    private MediaPlayer mediaPlayer = new MediaPlayer();
 
-    private MediaPlayer mediaPlayer= new MediaPlayer();
-
-
-    long musicDuration;
     private boolean musicIsPlaying = false;
     private boolean isFirstPlay = true;
-
 
 
     //计时器
@@ -57,27 +52,24 @@ public class FullSreenMusicPlayerActivity extends AppCompatActivity implements V
     private int musicPosition;
 
     //异步线程
-    private final Handler myHandler = new Handler()
-    {
+    private final Handler myHandler = new Handler() {
         @Override
         //重写handleMessage方法,根据msg中what的值判断是否执行后续操作
         public void handleMessage(Message msg) {
-            if(msg.what == 0)
-            {
-                if(FullSreenMusicPlayerActivity.this.second >= ((int)mp3Infos.get(musicPosition).getDuration() / 1000)) {
-                    FullSreenMusicPlayerActivity.this.second = ((int)mp3Infos.get(musicPosition).getDuration() / 1000);
+            if (msg.what == 0) {
+                if (FullSreenMusicPlayerActivity.this.second >= ((int) mp3Infos.get(musicPosition).getDuration() / 1000)) {
+                    FullSreenMusicPlayerActivity.this.second = ((int) mp3Infos.get(musicPosition).getDuration() / 1000);
                 }
 
-                int hour = FullSreenMusicPlayerActivity.this.second  / 60 / 60 ;
-                int minute = (FullSreenMusicPlayerActivity.this.second - hour  * 60 * 60) / 60;
-                int second = FullSreenMusicPlayerActivity.this.second - hour  * 60 * 60 - minute * 60 ;
+                int hour = FullSreenMusicPlayerActivity.this.second / 60 / 60;
+                int minute = (FullSreenMusicPlayerActivity.this.second - hour * 60 * 60) / 60;
+                int second = FullSreenMusicPlayerActivity.this.second - hour * 60 * 60 - minute * 60;
 
 
-                duration = (minute>9? minute : "0" + minute) + ":" +
-                        (second>9? second : "0" + second );
+                duration = (minute > 9 ? minute : "0" + minute) + ":" +
+                        (second > 9 ? second : "0" + second);
                 mStart.setText(duration);
-                mseekBar1.setProgress(FullSreenMusicPlayerActivity.this.second * 100 * 1000 / (int)mp3Infos.get(musicPosition).getDuration());
-                //mStart.setText(formatTime(test));
+                mseekBar1.setProgress(FullSreenMusicPlayerActivity.this.second * 100 * 1000 / (int) mp3Infos.get(musicPosition).getDuration());
 
             }
         }
@@ -86,9 +78,7 @@ public class FullSreenMusicPlayerActivity extends AppCompatActivity implements V
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        //requestWindowFeature(Window.FEATURE_NO_TITLE);
         setContentView(R.layout.activity_full_player);
-
 
         Toolbar toolbar = (Toolbar) findViewById(R.id.FullSreenMusicPlayerToolbar);
         setSupportActionBar(toolbar);
@@ -103,11 +93,10 @@ public class FullSreenMusicPlayerActivity extends AppCompatActivity implements V
 
             Intent intent = getIntent();
 
-            musicPosition = intent.getIntExtra("musicPosition",0);
-            //musicIsPlaying = intent.getBooleanExtra("musicIsPlaying",false);
+            musicPosition = intent.getIntExtra("musicPosition", 0);
             getSupportActionBar().setTitle(mp3Infos.get(musicPosition).getTitle());
             getSupportActionBar().setSubtitle(mp3Infos.get(musicPosition).getArtist());
-            /////////////////////////////////
+
 
         }
 
@@ -128,7 +117,7 @@ public class FullSreenMusicPlayerActivity extends AppCompatActivity implements V
 
     @Override
     public void onClick(View view) {
-        switch (view.getId()){
+        switch (view.getId()) {
             case R.id.prev:
 
                 break;
@@ -145,9 +134,8 @@ public class FullSreenMusicPlayerActivity extends AppCompatActivity implements V
         TimerTask task = new TimerTask() {
             @Override
             public void run() {
-                //mStart.setText(formatTime(second));
                 myHandler.sendEmptyMessage(0);
-                if(musicIsPlaying) {
+                if (musicIsPlaying) {
                     second++;//秒数加一
                 }
 
@@ -159,7 +147,7 @@ public class FullSreenMusicPlayerActivity extends AppCompatActivity implements V
     @Override
     public boolean onOptionsItemSelected(MenuItem item) {
         int id = item.getItemId();
-        switch (id){
+        switch (id) {
             case android.R.id.home:
                 mediaPlayer.reset();
                 finish();
@@ -193,14 +181,13 @@ public class FullSreenMusicPlayerActivity extends AppCompatActivity implements V
     }
 
     public void play_pauseClick(View view) {
-        //Toast.makeText(FullSreenMusicPlayerActivity.this,"dfsfsf", Toast.LENGTH_SHORT).show();
-        if(mediaPlayer.isPlaying()) {
+        if (mediaPlayer.isPlaying()) {
             mediaPlayer.pause();
             musicIsPlaying = false;
             mPlay_pause.setImageResource(R.drawable.uamp_ic_play_arrow_white_48dp);
             return;
         }
-        if(!musicIsPlaying && isFirstPlay == false) {
+        if (!musicIsPlaying && isFirstPlay == false) {
             mediaPlayer.start();
             musicIsPlaying = true;
             mPlay_pause.setImageResource(R.drawable.uamp_ic_pause_white_48dp);
@@ -223,7 +210,7 @@ public class FullSreenMusicPlayerActivity extends AppCompatActivity implements V
     }
 
     public void prevClick(View view) {
-        if(musicPosition >= 1) {
+        if (musicPosition >= 1) {
             musicPosition--;
         }
         musicIsPlaying = false;
@@ -240,7 +227,7 @@ public class FullSreenMusicPlayerActivity extends AppCompatActivity implements V
     }
 
     public void nextClick(View view) {
-        if(musicPosition >= 1) {
+        if (musicPosition >= 1) {
             musicPosition++;
         }
         musicIsPlaying = false;
