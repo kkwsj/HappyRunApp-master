@@ -45,8 +45,8 @@ public class WeatherDataUtil {
      * 获取天气，直接同步方式
      */
     public static void requestWeather() {
-        //String httpUrl = "http://apis.baidu.com/heweather/weather/free";
-        String httpUrl = "https://free-api.heweather.com/v5/";
+        String httpUrl = "http://apis.baidu.com/heweather/pro/weather";
+        //String httpUrl = "https://free-api.heweather.com/v5/";
         String httpArg = "city=" + city;
         BufferedReader reader;
         String result = "";
@@ -58,8 +58,8 @@ public class WeatherDataUtil {
             HttpURLConnection connection = (HttpURLConnection) url
                     .openConnection();
             connection.setRequestMethod("GET");
-            //connection.setRequestProperty("apikey", "c9fede3ca8b6f60bf44c5d0c4f24ec2c");
-            connection.setRequestProperty("apikey", "9175aeb11ce64d169ec7aabacbb39c30");
+            connection.setRequestProperty("apikey", "c9fede3ca8b6f60bf44c5d0c4f24ec2c");
+            //connection.setRequestProperty("apikey", "9175aeb11ce64d169ec7aabacbb39c30");
             connection.connect();
             InputStream is = connection.getInputStream();
             reader = new BufferedReader(new InputStreamReader(is, "UTF-8"));
@@ -70,6 +70,7 @@ public class WeatherDataUtil {
             }
             reader.close();
             result = sb.toString();
+            Log.e("WeatherDataUtil",result);
         } catch (Exception e) {
             Log.e("dataUtil", "error");
             e.printStackTrace();
@@ -90,7 +91,7 @@ public class WeatherDataUtil {
     public static void connectWeather() {
         Parameters para = new Parameters();
         para.put("city", city);
-        ApiStoreSDK.execute("https://free-api.heweather.com/v5/",
+        ApiStoreSDK.execute("http://apis.baidu.com/heweather/pro/weather",
                 ApiStoreSDK.GET,
                 para,
                 new ApiCallBack() {

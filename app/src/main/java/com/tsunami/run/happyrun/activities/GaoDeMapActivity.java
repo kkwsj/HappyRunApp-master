@@ -70,8 +70,6 @@ public class GaoDeMapActivity extends AppCompatActivity implements View.OnClickL
     //日期数据
     String date = "";
     //计时器
-
-    //kkwsj
     private boolean isRunning = false;
 
     private int second = 0;  //总秒数

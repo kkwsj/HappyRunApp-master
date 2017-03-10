@@ -157,7 +157,7 @@ public class weather_fragment extends Fragment {
             } else if (!currentLocation) {
                 Toast.makeText(getActivity(), "请打开位置服务", Toast.LENGTH_SHORT).show();
             } else {
-                Toast.makeText(getActivity(), "目前天气免费接口不能用！", Toast.LENGTH_SHORT).show();
+                //Toast.makeText(getActivity(), "目前天气免费接口不能用！", Toast.LENGTH_SHORT).show();
             }
         }
     }
@@ -272,9 +272,9 @@ public class weather_fragment extends Fragment {
      * 获取城市天气
      */
     private void connectWeather() {
-//        final ProgressDialog dialog = new ProgressDialog(getActivity());
-//        dialog.setMessage("加...");
-//        dialog.show();
+        final ProgressDialog dialog = new ProgressDialog(getActivity());
+        dialog.setMessage("加载中...");
+        dialog.show();
 
         new AsyncTask<Void, Void, Void>() {
             @Override
@@ -293,7 +293,7 @@ public class weather_fragment extends Fragment {
             protected void onPostExecute(Void result) {
                 // 更新UI界面
                 updateWeatherUI();
-                //dialog.dismiss();
+                dialog.dismiss();
             }
         }.execute();
     }
